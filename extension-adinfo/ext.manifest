@@ -1,0 +1,6 @@
+name: AdInfoExt
+
+platforms:
+  ios:
+    context:
+        weakFrameworks: ["AdSupport"]
