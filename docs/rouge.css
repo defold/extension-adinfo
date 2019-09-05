@@ -266,7 +266,8 @@
 }
 
 .icon-attention:before {
-    content: "\E871"
+    content: "\E871";
+    color:#ffa500;
 }
 
 .icon-amazon:before {
