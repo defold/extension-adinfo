@@ -1,8 +1,8 @@
-# Push Notifications for Defold
+# AdInfo for Defold
 
-This is a Defold [native extension](https://www.defold.com/manuals/extensions/) which provides access to Push Notifications functionality on iOS and Android devices.
+This is a Defold [native extension](https://www.defold.com/manuals/extensions/) which provides access to AD ID and AD tracking status on iOS and Android devices.
 
-To learn more please visit the [documentation page](https://github.com/defold/extension-adinfo/) for this extension.
+To learn more please visit the [documentation page](https://defold.github.io/extension-adinfo/) for this extension.
 
 ---
 
