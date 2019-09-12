@@ -1,6 +1,14 @@
 name: AdInfoExt
 
 platforms:
-  ios:
-    context:
-        weakFrameworks: ["AdSupport"]
+    armv7-ios:
+        context:
+            weakFrameworks: ['AdSupport']
+
+    arm64-ios:
+        context:
+            weakFrameworks: ['AdSupport']
+
+    x86_64-ios:
+        context:
+            weakFrameworks: ['AdSupport']
