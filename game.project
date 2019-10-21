@@ -15,3 +15,6 @@ input_method = HiddenInputField
 title = extension-adinfo
 dependencies = https://github.com/andsve/dirtylarry/archive/master.zip,https://github.com/defold/extension-gps/archive/master.zip
 
+[library]
+include_dirs = extension-adinfo
+
