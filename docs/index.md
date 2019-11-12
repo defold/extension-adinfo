@@ -1,102 +1,23 @@
 ---
 layout: default
 ---
-## Modules
-{% for item in site.data.api %}
-### <code>{{ item.name }}</code>
-{% include description.md desc=item.desc %}
-{% endfor %}
 
-<hr>
+# Defold AdInfo API documentation
 
-## Functions
-<table>
-    <tbody>
-{% for module in site.data.api %}
-    {% for item in module.members %}
-        {% if item.type contains 'function' %}
-        <tr>
-            <td><a href="#{{ item.name | url_encode }}"><strong>{{ module.name }}.{{ item.name }}()</strong></a></td>
-            <td>{% include description.md desc=item.desc %}</td>
-        </tr>
-        {% endif %}
-    {% endfor %}
-{% endfor %}
-    </tbody>
-</table>
+This extension provides functions for receiving Ad ID and Ad tracking status. Supported on iOS and Android.
 
-{% for module in site.data.api %}
-    {% for function in module.members %}
-        {% if function.type contains 'function' %}
-<div class="function-wrap">
-<h3 class="function-header"><a href="#{{ function.name | url_encode }}" id="{{ function.name | url_encode }}"><code>{{ module.name }}.{{ function.name }}({% for param in function.parameters %}{{param.name}}{% unless forloop.last %}, {% endunless %}{% endfor %})</code></a></h3>
-{% include description.md desc=function.desc %}
-{% if function.parameters %}
-<table>
-    <thead>
-        <tr>
-            <th>Parameter</th>
-            <th>Type</th>
-            <th>Description</th>
-        </tr>
-    </thead>
-    <tbody>
-    {% for param in function.parameters %}
-        <tr>
-            <td style="text-align: right;">
-                <strong>{{ param.name }}</strong>
-                {% if param.optional %}
-                    (optional)
-                {% endif %}
-            </td>
-            <td><code>{{ param.type }}</code></td>
-            <td>{% include description.md desc=param.desc %}
-                {% if param.type == "function" %}
-                {% include type-function.md params=param.parameters %}
-                {% endif %}
-                {% if param.type == "table" %}
-                {% include type-table.md fields=param.members %}
-                {% endif %}
-            </td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-{% endif %}
-{% if function.returns %}
-    <table>
-        <thead>
-            <tr>
-                <th>Return value</th>
-                <th>Type</th>
-                <th>Description</th>
-            </tr>
-        </thead>
-        <tbody>
-            <h4>Returns</h4>
-            {% for return in function.returns %}
-                <tr>
-                    <td>{{ return.name }}</td>
-                    <td><code class="inline-code-block">{{ return.type }}</code></td>
-                    <td>{% include description.md desc=return.desc %}
-                        {% if return.type == "table" %}
-                        {% include type-table.md fields=return.members %}
-                        {% endif %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-{% endif %}
+# Usage
+To use this library in your Defold project, add the following URL to your <code class="inline-code-block">game.project</code> dependencies:
 
-{% if function.examples %}
-<h4>Examples</h4>
-{% for example in function.examples %}
-{{ example.desc | markdownify }}
-{% endfor %}
-{% endif %}
-</div>
+    https://github.com/defold/extension-adinfo/archive/master.zip
 
-        {% endif %}
-    {% endfor %}
-{% endfor %}
+We recommend using a link to a zip file of a [https://github.com/defold/extension-adinfo/releases](specific release).
+
+## Source code
+
+The source code is available on [GitHub](https://github.com/defold/extension-adinfo)
+
+
+# API reference
+
+{% include api_ref.md %}
