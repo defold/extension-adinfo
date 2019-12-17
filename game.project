@@ -13,7 +13,7 @@ input_method = HiddenInputField
 
 [project]
 title = extension-adinfo
-dependencies = https://github.com/andsve/dirtylarry/archive/master.zip,https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-measurement-16.4.0.zip,https://github.com/defold/android-base-extensions/releases/download/1.0.0/gps-base-16.0.1.zip
+dependencies = https://github.com/andsve/dirtylarry/archive/master.zip
 
 [library]
 include_dirs = extension-adinfo

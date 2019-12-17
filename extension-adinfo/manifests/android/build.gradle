@@ -1,0 +1,9 @@
+
+
+dependencies {
+    // https://mvnrepository.com/artifact/com.google.android.gms/play-services-base
+    compile 'com.google.android.gms:play-services-base:16.0.1'
+
+    // https://mvnrepository.com/artifact/com.google.android.gms/play-services-measurement
+    compile 'com.google.android.gms:play-services-measurement:16.4.0'
+}
