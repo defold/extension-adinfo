@@ -8,11 +8,14 @@ platforms:
     armv7-ios:
         context:
             weakFrameworks: ['AdSupport']
+            frameworks: ['AppTrackingTransparency']
 
     arm64-ios:
         context:
             weakFrameworks: ['AdSupport']
+            frameworks: ['AppTrackingTransparency']
 
     x86_64-ios:
         context:
             weakFrameworks: ['AdSupport']
+            frameworks: ['AppTrackingTransparency']

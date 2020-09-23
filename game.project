@@ -10,6 +10,7 @@ height = 640
 
 [android]
 input_method = HiddenInputField
+package = com.defold.extension.adinfo
 
 [project]
 title = extension-adinfo
@@ -17,4 +18,7 @@ dependencies = https://github.com/andsve/dirtylarry/archive/master.zip
 
 [library]
 include_dirs = extension-adinfo
+
+[ios]
+bundle_identifier = com.defold.extension.adinfo
 

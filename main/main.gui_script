@@ -2,15 +2,17 @@ local dirtylarry = require "dirtylarry/dirtylarry"
 
 local function update_info()
 	if not adinfo then
+		print("adinfo not available")
 		return
 	end
-	local info = adinfo.get()
-	local txt = gui.get_node("info")
-	if info then
-		gui.set_text(txt, "ad_ident = "..info.ad_ident.."\nad_tracking_enabled = "..tostring(info.ad_tracking_enabled))
-	else
-		gui.set_text(txt, "Ad info do not ready!")
-	end
+
+	adinfo.get(function(self, info)
+		pprint(info)
+		local ad_ident = info.ad_ident
+		local enabled = info.ad_tracking_enabled
+		local text = ("ad_ident = %s\nad_tracking_enabled = %s"):format(ad_ident, tostring(enabled))
+		gui.set_text(gui.get_node("info"), text)
+	end)
 end
 
 function init(self)
