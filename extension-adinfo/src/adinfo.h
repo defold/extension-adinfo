@@ -17,7 +17,7 @@ struct ADInfoData
 
 	dmScript::LuaCallbackInfo* m_callback;
 
-	const char* m_AdId;
+	char* m_AdId;
 };
 
 

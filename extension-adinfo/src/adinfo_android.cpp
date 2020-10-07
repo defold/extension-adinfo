@@ -83,9 +83,9 @@ void ADInfo_GetAdId()
     if (return_value)
     {
         const char* new_char = env->GetStringUTFChars(return_value, 0);
-        env->DeleteLocalRef(return_value);
-
         ADInfo_QueueAdId(new_char);
+        env->ReleaseStringUTFChars(return_value, new_char);
+        env->DeleteLocalRef(return_value);
     }
 }
 

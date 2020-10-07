@@ -6,6 +6,7 @@
 
 #define DLIB_LOG_DOMAIN LIB_NAME
 #include <dmsdk/sdk.h>
+#include <stdlib.h>
 #include "adinfo.h"
 
 
@@ -14,7 +15,7 @@
 ADInfoData g_ADInfoData;
 
 void ADInfo_QueueAdId(const char* adId) {
-    g_ADInfoData.m_AdId = adId;
+    g_ADInfoData.m_AdId = strdup(adId);
 }
 
 static int GetAdInfo(lua_State* L) {
@@ -28,9 +29,6 @@ static int GetAdInfo(lua_State* L) {
     }
 
     luaL_checktype(L, 1, LUA_TFUNCTION);
-    if (g_ADInfoData.m_callback) {
-        dmScript::DestroyCallback(g_ADInfoData.m_callback);
-    }
     g_ADInfoData.m_callback = dmScript::CreateCallback(L, 1);
 
     if (!g_ADInfoData.m_AdId)
@@ -73,11 +71,7 @@ static dmExtension::Result UpdateAdInfo(dmExtension::Params* params)
             lua_pushboolean(L, ADInfo_IsAdvertisingTrackingEnabled());
             lua_rawset(L, -3);
 
-            if (lua_pcall(L, 2, 0, 0) != 0)
-            {
-                dmLogError("Error running AdId callback: %s", lua_tostring(L, -1));
-                lua_pop(L, 1);
-            }
+            dmScript::PCall(L, 2, 0);
             dmScript::TeardownCallback(g_ADInfoData.m_callback);
         }
         dmScript::DestroyCallback(g_ADInfoData.m_callback);
@@ -95,6 +89,8 @@ static dmExtension::Result InitializeAdInfo(dmExtension::Params* params)
 
 static dmExtension::Result FinalizeAdInfo(dmExtension::Params* params)
 {
+    free(g_ADInfoData.m_AdId);
+    g_ADInfoData.m_AdId = 0;
     return dmExtension::RESULT_OK;
 }
 
