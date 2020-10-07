@@ -64,12 +64,10 @@ static dmExtension::Result UpdateAdInfo(dmExtension::Params* params)
         if (dmScript::SetupCallback(g_ADInfoData.m_callback))
         {
             lua_newtable(L);
-            lua_pushliteral(L, "ad_ident");
             lua_pushstring(L, g_ADInfoData.m_AdId);
-            lua_rawset(L, -3);
-            lua_pushliteral(L, "ad_tracking_enabled");
+            lua_setfield(L, -2, "ad_ident");
             lua_pushboolean(L, ADInfo_IsAdvertisingTrackingEnabled());
-            lua_rawset(L, -3);
+            lua_setfield(L, -2, "ad_tracking_enabled");
 
             dmScript::PCall(L, 2, 0);
             dmScript::TeardownCallback(g_ADInfoData.m_callback);
