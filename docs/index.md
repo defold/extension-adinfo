@@ -5,7 +5,7 @@ brief: This manual covers how to get the advertising id and status on iOS and An
 
 # Defold advertising info extension API documentation
 
-This extension provides a unified, simple to use interface to get the advertising id and status on iOS and Android
+This extension provides a unified, simple to use interface to get the advertising id and status on iOS and Android.
 
 
 ## Installation
@@ -17,7 +17,7 @@ We recommend using a link to a zip file of a [specific release](https://github.c
 
 
 ## Configuration
-The extension can be configured using game.project settings by adding the following fields to game.project:
+The extension can be configured by adding the following fields to game.project:
 
 ```
 [adinfo]
@@ -29,6 +29,7 @@ register_for_attribution = 1
 
 Before requesting advertising info and status on iOS 14 the application must request user authorization to access app-related data for tracking the user or the device. This is done automatically when `adinfo.get()` is called. The string set in `adinfo.tracking_usage_description` will be shown to the user.
 
+Apple documentation: https://developer.apple.com/documentation/apptrackingtransparency?language=objc
 
 ### register_for_attribution
 
