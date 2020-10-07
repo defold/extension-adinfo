@@ -10,17 +10,15 @@
 
 void ADInfo_InitAdInfoExt(dmExtension::Params* params)
 {
-    dmLogInfo("ADInfo_InitAdInfoExt");
     if (dmConfigFile::GetInt(params->m_ConfigFile, "adinfo.register_for_attribution", 0))
     {
         if (@available(iOS 11.3, *))
         {
-            dmLogInfo("ADInfo_InitAdInfoExt registerAppForAdNetworkAttribution");
             [SKAdNetwork registerAppForAdNetworkAttribution];
         }
         else
         {
-            dmLogInfo("ADInfo_InitAdInfoExt registerAppForAdNetworkAttribution not available on iOS < 11.3");
+            dmLogInfo("registerAppForAdNetworkAttribution() not available on iOS < 11.3");
         }
     }
 }
@@ -30,10 +28,8 @@ void ADInfo_GetAdId()
     if (@available(iOS 14, *))
     {
         [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
-            dmLogInfo("ADInfo_GetAdId callback");
             if (status == ATTrackingManagerAuthorizationStatusAuthorized)
             {
-                dmLogInfo("ADInfo_GetAdId ATTrackingManagerAuthorizationStatusAuthorized");
                 ASIdentifierManager* asim = [ASIdentifierManager sharedManager];
                 NSString *uuid = [asim.advertisingIdentifier UUIDString];
                 const char *uuid_lua = [uuid UTF8String];
@@ -41,7 +37,6 @@ void ADInfo_GetAdId()
             }
             else
             {
-                dmLogInfo("ADInfo_GetAdId not authorized");
                 ADInfo_QueueAdId("");
             }
         }];
