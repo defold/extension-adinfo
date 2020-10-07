@@ -3,6 +3,6 @@
 <plist version="1.0">
 <dict>
 	<key>NSUserTrackingUsageDescription</key>
-	<string>App would like to access IDFA for tracking purpose</string>
+	<string>{{adinfo.tracking_usage_description}}</string>
 </dict>
 </plist>

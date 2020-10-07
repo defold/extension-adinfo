@@ -51,7 +51,6 @@ static const luaL_reg Module_methods[] =
 static void LuaInit(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
-    ADInfo_InitAdInfoExt();
     int top = lua_gettop(L);
     luaL_register(L, MODULE_NAME, Module_methods);
     lua_pop(L, 1);
@@ -90,6 +89,7 @@ static dmExtension::Result UpdateAdInfo(dmExtension::Params* params)
 static dmExtension::Result InitializeAdInfo(dmExtension::Params* params)
 {
     LuaInit(params->m_L);
+    ADInfo_InitAdInfoExt(params);
     return dmExtension::RESULT_OK;
 }
 

@@ -3,7 +3,7 @@
 
 #include <dmsdk/sdk.h>
 
-void ADInfo_InitAdInfoExt();
+void ADInfo_InitAdInfoExt(dmExtension::Params* params);
 void ADInfo_QueueAdId(const char* adId);
 void ADInfo_GetAdId();
 bool ADInfo_IsAdvertisingTrackingEnabled();

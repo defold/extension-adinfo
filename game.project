@@ -5,8 +5,8 @@ main_collection = /main/main.collectionc
 shared_state = 1
 
 [display]
-width = 960
-height = 640
+width = 640
+height = 1136
 
 [android]
 input_method = HiddenInputField
@@ -21,4 +21,8 @@ include_dirs = extension-adinfo
 
 [ios]
 bundle_identifier = com.defold.extension.adinfo
+
+[adinfo]
+tracking_usage_description = We would like to show you relevant ads.
+register_for_attribution = 1
 

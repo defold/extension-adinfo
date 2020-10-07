@@ -60,7 +60,7 @@ struct AdInfo
 
 static AdInfo         g_adinfo;
 
-void ADInfo_InitAdInfoExt()
+void ADInfo_InitAdInfoExt(dmExtension::Params* params)
 {
     ThreadAttacher attacher;
     JNIEnv *env = attacher.env;
