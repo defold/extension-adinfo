@@ -9,6 +9,9 @@ local function update_info()
 	adinfo.get(function(self, info)
 		pprint(info)
 		local ad_ident = info.ad_ident
+		if ad_ident == "" then
+			ad_ident = "NOT AVAILABLE"
+		end
 		local enabled = info.ad_tracking_enabled
 		local text = ("ad_ident = %s\nad_tracking_enabled = %s"):format(ad_ident, tostring(enabled))
 		gui.set_text(gui.get_node("info"), text)
