@@ -1,6 +1,5 @@
 # Advertising info for Defold
 
-Defold [native extension](https://www.defold.com/manuals/extensions/) which provides access to AD ID and AD tracking status on iOS and Android devices.
+Defold [native extension](https://www.defold.com/manuals/extensions/) which provides access to advertising information and statis on iOS and Android.
 
-## API and installation
-[API and setup instructions](https://defold.github.io/extension-adinfo).
+[Manual, API and setup instructions](https://www.defold.com/extension-adinfo/) is available on the official Defold site.
