@@ -26,3 +26,18 @@
                 end)
             end
             ```
+
+#*****************************************************************************************************
+
+  - name: update_conversion_value
+    type: function
+    desc: |-
+          Updates the conversion value and verifies the first launch of an app
+          installed as a result of an ad. The function does nothing on Android.
+
+    members:
+    - name: value
+      type: number
+      desc: |-
+            An unsigned 6-bit value (>=0 and <=63). The app or the ad network
+            determines the meaning of the value.
