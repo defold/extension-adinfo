@@ -18,7 +18,15 @@ void ADInfo_QueueAdId(const char* adId) {
     g_ADInfoData.m_AdId = strdup(adId);
 }
 
-static int GetAdInfo(lua_State* L) {
+static int AdInfo_UpdateConversionValue(lua_State* L) {
+    DM_LUA_STACK_CHECK(L, 0);
+
+    lua_Number value = luaL_checknumber(L, 1);
+    AdInfo_PlatformUpdateConversionValue(value);
+    return 0;
+}
+
+static int AdInfo_Get(lua_State* L) {
     DM_LUA_STACK_CHECK(L, 1);
 
     if(g_ADInfoData.m_callback != 0)
@@ -33,7 +41,7 @@ static int GetAdInfo(lua_State* L) {
 
     if (!g_ADInfoData.m_AdId)
     {
-        ADInfo_GetAdId();
+        ADInfo_PlatformGetAdId();
     }
 
     lua_pushboolean(L, 1);
@@ -42,7 +50,8 @@ static int GetAdInfo(lua_State* L) {
 
 static const luaL_reg Module_methods[] =
 {
-    {"get", GetAdInfo},
+    {"get", AdInfo_Get},
+    {"update_conversion_value", AdInfo_UpdateConversionValue},
     {0,0}
 };
 
@@ -66,7 +75,7 @@ static dmExtension::Result UpdateAdInfo(dmExtension::Params* params)
             lua_newtable(L);
             lua_pushstring(L, g_ADInfoData.m_AdId);
             lua_setfield(L, -2, "ad_ident");
-            lua_pushboolean(L, ADInfo_IsAdvertisingTrackingEnabled());
+            lua_pushboolean(L, ADInfo_PlatformIsAdvertisingTrackingEnabled());
             lua_setfield(L, -2, "ad_tracking_enabled");
 
             dmScript::PCall(L, 2, 0);
@@ -81,7 +90,7 @@ static dmExtension::Result UpdateAdInfo(dmExtension::Params* params)
 static dmExtension::Result InitializeAdInfo(dmExtension::Params* params)
 {
     LuaInit(params->m_L);
-    ADInfo_InitAdInfoExt(params);
+    ADInfo_PlatformInitAdInfoExt(params);
     return dmExtension::RESULT_OK;
 }
 

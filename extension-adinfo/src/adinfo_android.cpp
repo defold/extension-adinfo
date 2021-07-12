@@ -60,7 +60,7 @@ struct AdInfo
 
 static AdInfo         g_adinfo;
 
-void ADInfo_InitAdInfoExt(dmExtension::Params* params)
+void ADInfo_PlatformInitAdInfoExt(dmExtension::Params* params)
 {
     ThreadAttacher attacher;
     JNIEnv *env = attacher.env;
@@ -74,7 +74,7 @@ void ADInfo_InitAdInfoExt(dmExtension::Params* params)
     g_adinfo.m_AdInfo = env->NewGlobalRef(env->NewObject(cls, jni_constructor, dmGraphics::GetNativeAndroidActivity()));
 }
 
-void ADInfo_GetAdId()
+void ADInfo_PlatformGetAdId()
 {
     ThreadAttacher attacher;
     JNIEnv *env = attacher.env;
@@ -89,7 +89,7 @@ void ADInfo_GetAdId()
     }
 }
 
-bool ADInfo_IsAdvertisingTrackingEnabled()
+bool ADInfo_PlatformIsAdvertisingTrackingEnabled()
 {
     ThreadAttacher attacher;
     JNIEnv *env = attacher.env;
@@ -97,5 +97,9 @@ bool ADInfo_IsAdvertisingTrackingEnabled()
     jboolean return_value = (jboolean)env->CallBooleanMethod(g_adinfo.m_AdInfo, g_adinfo.m_getLimitAdTracking);
     return (return_value == JNI_TRUE);
 }
+
+void AdInfo_PlatformUpdateConversionValue(int value) {
+    // not supported on Android
+};
 
 #endif
