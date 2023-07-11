@@ -1,6 +1,6 @@
 
 dependencies {
     // https://developers.google.com/android/guides/setup
-    compile 'com.google.android.gms:play-services-base:16.0.1'
-    compile 'com.google.android.gms:play-services-measurement:16.4.0'
+    implementation 'com.google.android.gms:play-services-base:16.0.1'
+    implementation 'com.google.android.gms:play-services-measurement:16.4.0'
 }
