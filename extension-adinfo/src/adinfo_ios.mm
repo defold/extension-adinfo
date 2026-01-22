@@ -8,7 +8,7 @@
 
 #import <StoreKit/SKAdNetwork.h>
 
-void ADInfo_InitAdInfoExt(dmExtension::Params* params)
+void ADInfo_PlatformInitAdInfoExt(dmExtension::Params* params)
 {
     if (dmConfigFile::GetInt(params->m_ConfigFile, "adinfo.register_for_attribution", 0))
     {
@@ -23,7 +23,7 @@ void ADInfo_InitAdInfoExt(dmExtension::Params* params)
     }
 }
 
-void ADInfo_GetAdId()
+void ADInfo_PlatformGetAdId()
 {
     if (@available(iOS 14, *))
     {
@@ -50,7 +50,7 @@ void ADInfo_GetAdId()
     }
 }
 
-bool ADInfo_IsAdvertisingTrackingEnabled()
+bool ADInfo_PlatformIsAdvertisingTrackingEnabled()
 {
     if (@available(iOS 14, *))
     {
@@ -62,5 +62,17 @@ bool ADInfo_IsAdvertisingTrackingEnabled()
         return (bool)asim.advertisingTrackingEnabled;
     }
 }
+
+
+void AdInfo_PlatformUpdateConversionValue(int value) {
+    if (@available(iOS 14, *))
+    {
+        [SKAdNetwork updateConversionValue:value];
+    }
+    else
+    {
+        dmLogInfo("updateConversionValue() not available on iOS < 14");
+    }
+};
 
 #endif
